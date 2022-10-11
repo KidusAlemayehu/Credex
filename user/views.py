@@ -7,6 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions.models import Session
 import random
 
+
+otp = 0
 # Create your views here.
 def register(request):
     if request.POST:
@@ -25,10 +27,10 @@ def register(request):
                 messages.error(request, 'email is already registered.')
                 return redirect('signin')
             else:
+                global otp
                 otp = random.randrange(10000000, 99999999)
                 pwd = make_password(password)
                 user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=pwd)
-                request.session['otp_code'] = otp
                 request.session['username']=username
                 print(otp)
                 user.save(force_insert=False)
@@ -46,26 +48,23 @@ def register(request):
         return render(request, 'signup.html')
 
 def verification(request):
+    # sourcery skip: remove-unnecessary-else, swap-if-else-branches
     username = request.session['username']
     if request.POST:
-        otp = request.POST.get('otp')
-        otp_code = request.session['otp_code']
+        otp_code = request.POST.get('otp')
+        # otp_code = request.session['otp_code']
         if int(otp) == int(otp_code):
             user = User.objects.get(username=username)
-            Session.objects.all().delete()
-            auth.login(request, user)
+            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             username = request.user.username
-            # user = User.objects.get(username=username)
-            print(username)
+            user = User.objects.get(username=username)
+            Session.objects.all().delete()
             return redirect('dashboard')
         else:
             user = User.objects.get(username=username).delete()
             messages.error(request, 'Invalid OTP code')
             return redirect('signup')
     else:
-        otp = request.session['otp_code']
-        print(type(otp))
-        print(username)
         return render(request, 'verify.html')
 
 @csrf_exempt
@@ -77,7 +76,7 @@ def login(request):
         user=User.objects.get(username=username)
         if user is not None:
             if check_password(password=password, encoded=make_password(password), setter=None):
-                auth.login(request, user)
+                auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return redirect('dashboard')
             else:
                 messages.error(request, 'Sorry, your password isn\'t correct')
@@ -97,7 +96,5 @@ def logout(request):
 def dashboard(request):
     if request.session.keys() == []:
         redirect('signin')
-    print(request.session.keys())
     username = request.user.username
-    print(username)
     return render(request, 'dashboard.html', {'username':username})
