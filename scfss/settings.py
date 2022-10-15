@@ -33,8 +33,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'adminlte3',
-    'adminlte3_theme',
+    # 'adminlte3',
+    # 'adminlte3_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'scfss.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'credexDB',
-        'USER': 'barch',
-        'PASSWORD': '12345678',
-        'HOST': '127.0.0.1',
+        'NAME': 'deeial5hh4g6l2',
+        'USER': 'oeqsjdocawhjtq',
+        'PASSWORD': 'ee6a860f3f026c3b94cb78c84aa0c6dd90e986cf1ec36af015e538f87ce3cf20',
+        'HOST': 'ec2-3-219-19-205.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
