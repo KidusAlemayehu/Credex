@@ -47,6 +47,26 @@
 }
 
 
+/* .avatar {
+    border-radius: 150 px;
+} */
+
+.upload-btn {
+    border-radius: 45px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.10);
+}
+
+.side-nav ul {
+    text-decoration: none;
+    list-style: none;
+}
+
+.side-nav ul li a {
+    color: rgb(29, 29, 29);
+    font-size: 18px;
+}
+
+
 /* #message {
     height: 30px;
 } */

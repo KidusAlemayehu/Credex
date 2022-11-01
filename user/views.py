@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions.models import Session
 import random
+from file.models import File
 
 
 otp = 0
@@ -96,5 +97,13 @@ def logout(request):
 def dashboard(request):
     if request.session.keys() == []:
         redirect('signin')
-    username = request.user.username
-    return render(request, 'dashboard.html', {'username':username})
+    username = request.user.id
+    print(username)
+    files = File.objects.filter(usr=username)
+    for file in files:
+     print(file.name)
+     print(file.content_type)
+     print(file.file.path)
+     print(file.created_date)
+     print("___________________")
+    return render(request, 'dashboard.html', {'username':username, 'files':files})

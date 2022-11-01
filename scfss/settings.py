@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'scfss.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'deeial5hh4g6l2',
-        'USER': 'oeqsjdocawhjtq',
-        'PASSWORD': 'ee6a860f3f026c3b94cb78c84aa0c6dd90e986cf1ec36af015e538f87ce3cf20',
-        'HOST': 'ec2-3-219-19-205.compute-1.amazonaws.com',
+        'NAME': 'credex_DB',
+        'USER': 'kidus_alx',
+        'PASSWORD': '3346khag',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -166,8 +166,12 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+
+#MEDIA FILES configuration
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

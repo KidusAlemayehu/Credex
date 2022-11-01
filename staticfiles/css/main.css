@@ -41,11 +41,25 @@
     height: 25px;
 }
 
+.side-nav {
+    background: rgb(233, 233, 233);
+}
+
 .form-floating input {
     height: 10px;
     padding: 2px;
 }
 
-#message {
-    height: 30px;
+.avatar {
+    border-radius: 150 px;
 }
+
+.upload-btn {
+    border-radius: 45px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* #message {
+    height: 30px;
+} */
