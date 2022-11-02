@@ -3,10 +3,12 @@ from django.contrib.auth.models import User
 from django.contrib import messages, auth
 from django.core.mail import EmailMessage
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions.models import Session
 import random
 from file.models import File
+from file.compression import compress_file
 
 
 otp = 0
@@ -94,6 +96,8 @@ def logout(request):
     auth.logout(request)
     request.session.clear()
     return redirect('signin')
+
+@login_required
 def dashboard(request):
     if request.session.keys() == []:
         redirect('signin')
@@ -103,7 +107,8 @@ def dashboard(request):
     for file in files:
      print(file.name)
      print(file.content_type)
-     print(file.file.path)
+     print(file.file)
      print(file.created_date)
      print("___________________")
+    #  compress_file(file.file.path)
     return render(request, 'dashboard.html', {'username':username, 'files':files})
