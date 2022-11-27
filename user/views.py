@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions.models import Session
 import random
 from file.models import File
-from file.compression import compress_file
+from file.compression import compress_file, decompress_file
 
 
 otp = 0
@@ -99,16 +99,23 @@ def logout(request):
 
 @login_required
 def dashboard(request):
-    if request.session.keys() == []:
-        redirect('signin')
-    username = request.user.id
-    print(username)
-    files = File.objects.filter(usr=username)
-    for file in files:
-     print(file.name)
-     print(file.content_type)
-     print(file.file)
-     print(file.created_date)
-     print("___________________")
-    #  compress_file(file.file.path)
-    return render(request, 'dashboard.html', {'username':username, 'files':files})
+    try:
+        if request.session.keys() == []:
+            redirect('signin')
+        username = request.user.id
+        print(username)
+        files = File.objects.filter(usr=username)
+        for file in files:
+            # decompress_file(file.file.path, file.name)
+            print(file.name)
+            print(file.content_type)
+            print(file.file)
+            print(file.created_date)
+            print("___________________")
+        #  compress_file(file.file.path)
+        return render(request, 'dashboard.html', {'username':username, 'files':files})
+    except Exception as e:
+        return e
+    # finally:
+    #     for file in files:
+    #         compress_file(file.file.path)

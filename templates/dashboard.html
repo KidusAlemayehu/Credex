@@ -88,9 +88,9 @@
                                         </embed>
                                     {% comment %} </object> {% endcomment %}
                                         <div class="card-body">
-                                        <p class="card-title" name="" style="font-size:12px; text-overflow: ellipsis;
+                                        <p class="card-title" name="" style="font-size:12px; text-decoration:none; text-overflow: ellipsis;
                                         overflow: hidden;
-                                        white-space: nowrap;">{{file.name}}</p>
+                                        white-space: nowrap;"><a href="/file/open_file/{{file.id}}" class='text-dark' style="font-size:12px; text-decoration:none;">{{file.name}}</a></p>
                                         <span class="badge rounded-pill bg-light text-dark">{{file.created_date}}</span>
                                     </div>
                                 </div>
