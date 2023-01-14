@@ -37,9 +37,10 @@
                 <button class="mx-2" style="border:none;background:none;">
                     <i class="fas fa-cog text-dark" style="font-size:25px;"></i>
                 </button>
-                <button class="avatar btn btn-primary mx-3" style="border-radius :100px; height: 40px; width:40px;" type="submit">
+                <a href="{% url 'signout'%}" class="btn btn-primary mx-3" type="submit">Sign Out</a>
+                <a class="avatar btn btn-primary mx-3" style="border-radius :100px; height: 40px; width:40px;" type="submit">
                     <p class="usr-avtr text-center">{{username.0.upper}}</p>
-                </button>
+                </a>
             </div>
         </div>
     </nav>
