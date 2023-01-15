@@ -116,6 +116,4 @@ def dashboard(request):
         return render(request, 'dashboard.html', {'username':username, 'files':files})
     except Exception as e:
         return e
-    # finally:
-    #     for file in files:
-    #         compress_file(file.file.path)
+    
