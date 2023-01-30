@@ -9,7 +9,6 @@ django-allauth==0.51.0
 django-cleanup==6.0.0
 idna==3.4
 oauthlib==3.2.1
-psycopg2-binary==2.9.3
 pycparser==2.21
 PyJWT==2.5.0
 python-dotenv==0.21.0
