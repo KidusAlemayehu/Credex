@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions.models import Session
 import random
-from file.models import File
-from file.compression import compress_file, decompress_file
+from files.models import File
+from files.compression import compress_file, decompress_file
 
 
 otp = 0
@@ -57,11 +57,10 @@ def verification(request):
         otp_code = request.POST.get('otp')
         # otp_code = request.session['otp_code']
         if int(otp) == int(otp_code):
-            user = User.objects.get(username=username)
+            user = User.objects.filter(username=username)
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             username = request.user.username
-            user = User.objects.get(username=username)
-            Session.objects.all().delete()
+            user = User.objects.filter(username=username)
             return redirect('dashboard')
         else:
             user = User.objects.get(username=username).delete()
@@ -99,10 +98,7 @@ def logout(request):
 
 @login_required
 def dashboard(request):
-    try:
-        if request.session.keys() == []:
-            redirect('signin')
-        username = request.user.id
+        username = request.user
         print(username)
         files = File.objects.filter(usr=username)
         for file in files:
@@ -114,6 +110,4 @@ def dashboard(request):
             print("___________________")
         #  compress_file(file.file.path)
         return render(request, 'dashboard.html', {'username':username, 'files':files})
-    except Exception as e:
-        return e
     

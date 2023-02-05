@@ -2,9 +2,9 @@ from django.apps import AppConfig
 from django.core.signals import request_finished
 from . import signals
 
-class FileConfig(AppConfig):
+class FilesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'file'
+    name = 'files'
 
     def ready(self):
         request_finished.connect(signals.my_callback)

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
-    'file.apps.FileConfig',
+    'files.apps.FilesConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'scfss.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'credex_DB',
-        'USER': 'kidus_alx',
-        'PASSWORD': '3346khag',
-        'HOST': '127.0.0.1',
+        'NAME': 'credex_db',
+        'USER': 'postgres',
+        'PASSWORD': '4363kahg',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

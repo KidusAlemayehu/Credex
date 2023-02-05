@@ -9,6 +9,8 @@ def user_directory_path(instance, filename):
 # Create your models here.
 @cleanup.ignore
 class File(models.Model):
+    class Meta:
+        db_table='file'
     id = models.BigAutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=250)
     content_type = models.CharField(max_length=250)
